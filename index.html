@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caza Lost — Mercado Libre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       Caça Lost — Grid launcher
+       Stub liviano que redirige al Apps Script Web App.
+       NUNCA usa browser-storage (localStorage/sessionStorage) para
+       que el validador de Grid no rechace el upload.
+       ════════════════════════════════════════════════════════════ */
+    :root {
+      --ml-yellow:    #FFE600;
+      --ml-yellow-d:  #FFD700;
+      --ml-blue:      #3483FA;
+      --ml-blue-d:    #2968C8;
+      --ml-navy:      #1259C3;
+      --text:         #1A1A1A;
+      --text-soft:    #737373;
+      --surface:      #FFFFFF;
+      --bg:           #EBEBEB;
+      --border:       #E5E5E5;
+      --r-md:         12px;
+      --r-lg:         20px;
+      --r-pill:       999px;
+      --t:            .22s cubic-bezier(.4,0,.2,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background:
+        radial-gradient(900px 480px at 30% 10%, rgba(255,230,0,.55), transparent 60%),
+        radial-gradient(900px 480px at 80% 90%, rgba(52,131,250,.18), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      background: var(--surface);
+      width: 480px;
+      max-width: 100%;
+      border-radius: var(--r-lg);
+      box-shadow: 0 30px 90px rgba(0,0,0,.18);
+      overflow: hidden;
+    }
+    .card-top {
+      background: linear-gradient(135deg, var(--ml-yellow) 0%, var(--ml-yellow-d) 100%);
+      padding: 26px 28px 22px;
+      position: relative;
+    }
+    .card-top::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ml-blue), var(--ml-navy));
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .brand-logo {
+      height: 36px;
+      width: auto;
+    }
+    .brand-logo-fallback {
+      display: none;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--ml-navy);
+      letter-spacing: -.02em;
+    }
+    .card-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+    .card-sub {
+      font-size: 13px;
+      color: rgba(0,0,0,.65);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+    .card-body {
+      padding: 24px 28px 28px;
+      text-align: center;
+    }
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--ml-blue);
+      color: #fff;
+      border: 0;
+      padding: 14px 22px;
+      border-radius: var(--r-md);
+      font-weight: 800;
+      font-size: 15px;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--t);
+      box-shadow: 0 4px 12px rgba(52,131,250,.25);
+    }
+    .open-btn:hover {
+      background: var(--ml-blue-d);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(52,131,250,.32);
+    }
+    .open-btn:active { transform: translateY(0); }
+    .open-btn svg {
+      flex: 0 0 auto;
+      transition: transform var(--t);
+    }
+    .open-btn:hover svg { transform: translateX(3px); }
+
+    .welcome {
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.55;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+    .welcome-greet {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ml-navy);
+      margin-bottom: 4px;
+      letter-spacing: -.02em;
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="card">
+  <div class="card-top">
+    <div class="brand-row">
+      <!-- SEC: referrerpolicy=no-referrer evita filtrar la URL de Grid
+           al CDN externo (CWE-200). onerror muestra el fallback estilado
+           si el CDN se cae o cambia el path (CWE-1104). -->
+      <img class="brand-logo"
+           src="https://logodownload.org/wp-content/uploads/2018/10/mercado-libre-logo-2.png"
+           alt="Mercado Libre"
+           referrerpolicy="no-referrer"
+           onerror="this.style.display='none';var n=this.nextElementSibling;if(n)n.style.display='inline-flex';">
+      <span class="brand-logo-fallback" aria-hidden="true">Mercado Libre</span>
+    </div>
+    <div class="card-title">Caza Lost</div>
+    <div class="card-sub">Operaciones · Mercado Libre</div>
+  </div>
+
+  <div class="card-body">
+    <p class="welcome">
+      <span class="welcome-greet">¡Hola!</span>
+      Tu cola de issues del día te está esperando.
+    </p>
+
+    <!-- SEC (CWE-601 open redirect): el href está hardcodeado, no se
+         construye desde query params ni inputs del usuario.
+         SEC (CWE-200 referrer leak): rel="noreferrer" suprime el header
+         Referer así la URL de Grid no viaja al endpoint de Apps Script.
+         target="_top": rompe el iframe de Grid y navega el top-level
+         window — necesario porque Apps Script tiene X-Frame-Options
+         DEFAULT (solo permite framing desde googleusercontent.com), así
+         que target="_self" se rompería contra esa policy. -->
+    <a id="openBtn"
+       class="open-btn"
+       href="https://script.google.com/a/macros/mercadolibre.com.mx/s/AKfycby6g3OujRxSi88A2FEhMUZkmXYB1jux4X3cN5Hds1xveLm_P-oF2-4ffwlsf_Jbx62E/exec"
+       target="_top"
+       rel="noopener noreferrer">
+      Empezar
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12h14M13 5l7 7-7 7"
+              stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</main>
+
+</body>
+</html>
